@@ -170,7 +170,7 @@
          <img src="./static/images/interpolate_start.jpg" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
       </div>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">SleepLM</span> bridges natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
+        <span class="dnerf">SleepLM</span> is a family of foundation models that bridge natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
       </h2>
     </div>
   </div>
@@ -234,59 +234,179 @@
     </div>
     <!--/ Motivation. -->
 
-    <!-- Method. -->
+    <!-- Model Architecture. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Method: Sleep-Language Alignment</h2>
+        <h2 class="title is-3">Model Architecture: ReCoCa</h2>
         <div class="content has-text-justified">
           <p>
-            SleepLM introduces a unified pretraining objective that combines:
+            SleepLM is built on the <strong>Reconstructive Contrastive Captioner (ReCoCa)</strong> framework, designed to learn joint representations of sleep PSG and text.
+            The architecture consists of three key components:
           </p>
           <ul>
-            <li><strong>Contrastive Alignment:</strong> Aligning physiological signals with text descriptions.</li>
-            <li><strong>Caption Generation:</strong> Generating descriptive text from sleep signals.</li>
-            <li><strong>Signal Reconstruction:</strong> Ensuring physiological fidelity.</li>
+            <li>
+              <strong>Channel-Specific Sleep Encoder:</strong>
+              Captures the unique morphology of different sensor channels (EEG, EOG, etc.) using channel-independent patch embedding followed by interleaved temporal-attention and channel-attention blocks.
+            </li>
+            <li>
+              <strong>Signal Reconstruction Decoder:</strong>
+              A lightweight decoder that predicts original signal patches from encoder latents. This acts as a regularizer, ensuring the model retains physiological fidelity that might be lost if only training on text alignment.
+            </li>
+            <li>
+              <strong>Modality-Conditioned Text Decoder:</strong>
+              Generates descriptive captions. It uses a learnable token <code>[m]</code> to condition generation on specific physiological systems (Brain, Respiratory, Cardiac, Somatic), enabling controllable output.
+            </li>
           </ul>
+          <p>
+            The model is trained with a composite objective function:
+            <code>L_total = λ_con * L_con + λ_rec * L_rec + λ_cap * L_cap</code>, combining contrastive alignment, signal reconstruction, and caption generation.
+          </p>
           <div style="text-align: center; margin-top: 20px;">
              <!-- Placeholder for Method Figure -->
-             <img src="./static/images/interpolate_end.jpg" alt="SleepLM Architecture" style="width: 80%;">
-             <p class="is-size-6">SleepLM Architecture Overview (Placeholder)</p>
+             <img src="./static/images/interpolate_end.jpg" alt="SleepLM Architecture" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
+             <p class="is-size-6">Figure 1: The ReCoCa Architecture (Placeholder for Figure 3 from paper)</p>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Method. -->
+    <!--/ Model Architecture. -->
+
+    <!-- Capabilities. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Capabilities</h2>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM demonstrates versatile capabilities beyond standard classification:
+          </p>
+          <ul>
+            <li><strong>Zero-Shot Recognition:</strong> Outperforms proprietary LLMs (like Gemini 2.5 Pro, DeepSeek-R1) and fine-tuned VLMs on sleep staging and event localization without any task-specific training.</li>
+            <li><strong>Cross-Modal Retrieval:</strong> Enables precise searching of sleep segments using natural language queries (e.g., "rapid eye movement with irregular breathing") and vice-versa.</li>
+            <li><strong>Unseen Concept Generalization:</strong> Can identify clinical events not seen during training (e.g., "Mixed Apnea") by leveraging semantic relationships in the learned embedding space.</li>
+            <li><strong>Few-Shot Learning:</strong> Achieves high accuracy (0.90 AUC) with as few as 50 samples per class, demonstrating superior data efficiency compared to self-supervised baselines.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--/ Capabilities. -->
 
     <!-- Results. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
         
-        <h3 class="title is-4">State-of-the-Art Performance</h3>
+        <h3 class="title is-4">Zero-Shot Recognition</h3>
         <div class="content has-text-justified">
           <p>
-            SleepLM outperforms state-of-the-art models in zero-shot and few-shot learning, cross-modal retrieval, and sleep captioning.
+            We compared SleepLM against strong proprietary LLMs (provided with tabular PSG features) and open-source VLMs (fine-tuned with a sleep encoder).
+            SleepLM consistently outperforms baselines across sleep staging, event localization, and physiological inference tasks.
+          </p>
+        </div>
+        
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Sleep Staging (Acc)</th>
+                <th>Event Localization (IoU)</th>
+                <th>HR Inference (MAE)</th>
+                <th>SpO2 Inference (MAE)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DeepSeek-R1</td>
+                <td>~Random</td>
+                <td>~Random</td>
+                <td>Low Error</td>
+                <td>Low Error</td>
+              </tr>
+              <tr>
+                <td>Gemini 2.5 Pro</td>
+                <td>~Random</td>
+                <td>~Random</td>
+                <td>Low Error</td>
+                <td>Low Error</td>
+              </tr>
+              <tr>
+                <td>Fine-tuned VLMs</td>
+                <td>Suboptimal</td>
+                <td>Suboptimal</td>
+                <td>High Error</td>
+                <td>High Error</td>
+              </tr>
+              <tr style="font-weight: bold; background-color: #f0f8ff;">
+                <td>SleepLM</td>
+                <td><strong>High</strong></td>
+                <td><strong>High</strong></td>
+                <td><strong>Lowest Error</strong></td>
+                <td><strong>Lowest Error</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-7 has-text-centered">Table 1: Summary of Zero-Shot Performance (Placeholder values based on paper insights).</p>
+        </div>
+
+        <h3 class="title is-4">Cross-Modal Retrieval</h3>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM learns a precise mapping between physiological states and language. In retrieval tasks, it achieves near-perfect accuracy on small validation sets and maintains strong performance at scale, whereas LLM baselines struggle significantly.
           </p>
         </div>
 
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th colspan="2">Text &rarr; Signal (R@1 / R@5)</th>
+                <th colspan="2">Signal &rarr; Text (R@1 / R@5)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DeepSeek-R1</td>
+                <td colspan="2">Infeasible / Low</td>
+                <td>1.7</td>
+                <td>5.7</td>
+              </tr>
+              <tr>
+                <td>Gemini 2.5 Pro</td>
+                <td colspan="2">Infeasible / Low</td>
+                <td>4.0</td>
+                <td>10.7</td>
+              </tr>
+              <tr style="font-weight: bold; background-color: #f0f8ff;">
+                <td>SleepLM</td>
+                <td>94.3</td>
+                <td>99.0</td>
+                <td>94.3</td>
+                <td>99.7</td>
+              </tr>
+            </tbody>
+          </table>
+           <p class="is-size-7 has-text-centered">Table 2: Zero-shot cross-modal retrieval results (n=100 subset).</p>
+        </div>
+
+        <h3 class="title is-4">Data Efficiency (Few-Shot Learning)</h3>
+        <div class="content has-text-justified">
+            <p>
+                SleepLM's features are highly transferable. When training a linear probe on the held-out WSC dataset, SleepLM outperforms MAE and SimCLR baselines significantly, especially in low-data regimes.
+            </p>
+        </div>
         <!-- Figure in Table Layout -->
         <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 class="subtitle has-text-centered" style="margin-bottom: 1rem;">
-                <strong>Performance Comparison</strong> across various sleep understanding tasks.
-            </h2>
             <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
                 <div style="flex: 1; text-align: center;">
                     <img src="./static/images/interpolate_start.jpg" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
-                    <p>Zero-shot Learning</p>
+                    <p class="is-size-6"><strong>Few-Shot Learning Curve</strong><br>(Placeholder for Figure 6)</p>
                 </div>
                 <div style="flex: 1; text-align: center;">
                     <img src="./static/images/interpolate_end.jpg" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
-                    <p>Cross-modal Retrieval</p>
+                    <p class="is-size-6"><strong>Unseen Concept Embedding</strong><br>(Placeholder for Figure 4)</p>
                 </div>
             </div>
-            <p style="margin-top: 10px; font-style: italic;">
-                SleepLM achieves significant improvements over baselines in both classification and retrieval tasks.
-            </p>
         </div>
 
       </div>
