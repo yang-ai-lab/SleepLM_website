@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SleepLM: Natural-Language Intelligence for Human Sleep.">
+  <meta name="keywords" content="SleepLM, Sleep, LLM, Multimodal, Healthcare">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SleepLM: Natural-Language Intelligence for Human Sleep</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="#">
+            SleepLM
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SleepLM: Natural-Language Intelligence for Human Sleep</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Zongzhe Xu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Zitao Shuai</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Eideen Mozaffari</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Ravi Shankar Aysola</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Rajesh Kumar</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Yuzhe Yang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of California, Los Angeles</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/YourRepo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/YourDataset"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- Placeholder for Teaser Video/Image -->
+      <div style="text-align: center;">
+         <img src="./static/images/interpolate_start.jpg" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">SleepLM</span> bridges natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present <strong>SleepLM</strong>, a family of sleep-language foundation models that enable human sleep alignment,
+            interpretation, and interaction with natural language. Despite the critical role of sleep, learning-based
+            sleep analysis systems operate in closed label spaces (e.g., predefined stages or events) and fail to
+            describe, query, or generalize to novel sleep phenomena.
+          </p>
+          <p>
+            SleepLM bridges natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology. To
+            support this alignment, we introduce a multilevel sleep caption generation pipeline that enables the
+            curation of the first large-scale sleep-text dataset, comprising over 100K hours of data from more
+            than 10,000 individuals. Furthermore, we present a unified pretraining objective that combines
+            contrastive alignment, caption generation, and signal reconstruction to better capture physiological
+            fidelity and cross-modal interactions.
+          </p>
+          <p>
+            Extensive experiments on real-world sleep understanding tasks
+            verify that SleepLM outperforms state-of-the-art in zero-shot and few-shot learning, cross-modal
+            retrieval, and sleep captioning. Importantly, SleepLM also exhibits intriguing capabilities including
+            language-guided event localization, targeted insight generation, and zero-shot generalization to
+            unseen tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Motivation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Humans move between two distinct states: the waking life, structured by perception and language; and sleep, expressed through dense and continuous physiology.
+            Making sense of sleep requires a mapping from physiology to language.
+          </p>
+          <p>
+            Current computational methods are predominantly discriminative and confined to <strong>closed label spaces</strong> (e.g., sleep stages or events).
+            They lack the capacity for <strong>open-ended description or reasoning</strong>. SleepLM addresses this by learning to translate high-frequency sleep physiology into actionable language descriptions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Motivation. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method: Sleep-Language Alignment</h2>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM introduces a unified pretraining objective that combines:
+          </p>
+          <ul>
+            <li><strong>Contrastive Alignment:</strong> Aligning physiological signals with text descriptions.</li>
+            <li><strong>Caption Generation:</strong> Generating descriptive text from sleep signals.</li>
+            <li><strong>Signal Reconstruction:</strong> Ensuring physiological fidelity.</li>
+          </ul>
+          <div style="text-align: center; margin-top: 20px;">
+             <!-- Placeholder for Method Figure -->
+             <img src="./static/images/interpolate_end.jpg" alt="SleepLM Architecture" style="width: 80%;">
+             <p class="is-size-6">SleepLM Architecture Overview (Placeholder)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        
+        <h3 class="title is-4">State-of-the-Art Performance</h3>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM outperforms state-of-the-art models in zero-shot and few-shot learning, cross-modal retrieval, and sleep captioning.
+          </p>
+        </div>
+
+        <!-- Figure in Table Layout -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 class="subtitle has-text-centered" style="margin-bottom: 1rem;">
+                <strong>Performance Comparison</strong> across various sleep understanding tasks.
+            </h2>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <div style="flex: 1; text-align: center;">
+                    <img src="./static/images/interpolate_start.jpg" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+                    <p>Zero-shot Learning</p>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="./static/images/interpolate_end.jpg" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+                    <p>Cross-modal Retrieval</p>
+                </div>
+            </div>
+            <p style="margin-top: 10px; font-style: italic;">
+                SleepLM achieves significant improvements over baselines in both classification and retrieval tasks.
+            </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{xu2026sleeplm,
+  title={SleepLM: Natural-Language Intelligence for Human Sleep},
+  author={Xu, Zongzhe and Shuai, Zitao and Mozaffari, Eideen and Aysola, Ravi Shankar and Kumar, Rajesh and Yang, Yuzhe},
+  journal={arXiv preprint},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="#">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/YourRepo" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Template borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
