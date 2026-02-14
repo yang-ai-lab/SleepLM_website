@@ -241,9 +241,9 @@
             The model is trained with a composite objective function:
             <code>L_total = λ_con * L_con + λ_rec * L_rec + λ_cap * L_cap</code>, combining contrastive alignment, signal reconstruction, and caption generation.
           </p>
-          <div style="text-align: center; margin-top: 60px;">
+          <div style="text-align: center; margin-top: 60px; margin-bottom: 60px;">
              <img src="./static/images/model_figure.png" alt="SleepLM Architecture" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
-             <p class="is-size-6">The ReCoCa Architecture</p>
+             <p class="is-size-7">The ReCoCa Architecture</p>
           </div>
         </div>
       </div>
@@ -277,46 +277,46 @@
         <h3 class="title is-4">Benchmark Highlights</h3>
         <div class="content has-text-justified">
           <p>
-            SleepLM is evaluated on four complementary axes of sleep understanding and generalization.
+            SleepLM is evaluated on four complementary axes of sleep understanding and generalization. It outperforms a comprehensive set of baseline models including proprietary LLMs (like Gemini 2.5 Pro, DeepSeek-R1) and finetuned VLMs.
           </p>
           <ul>
-            <li><b>Zero-shot classification:</b> strong performance without task-specific finetuning, demonstrating that the learned signal–text alignment transfers to standard sleep staging and event-related recognition settings.</li>
-            <li><b>Cross-modal retrieval:</b> supports both text→signal and signal→text retrieval, enabling natural-language search over PSG segments and interpretation of retrieved physiology with matched captions.</li>
-            <li><b>Few-shot learning:</b> achieves high data efficiency in low-label regimes, where simple adapters/linear probes on top of pretrained representations perform competitively with stronger task-specific baselines.</li>
-            <li><b>Generalization to unseen concepts:</b> remains robust when evaluating on held-out concepts and datasets, indicating that the model captures reusable physiological semantics rather than memorizing a closed label set.</li>
+            <li><b>Zero-shot classification:</b> strong performance without task-specific finetuning, demonstrating that the learned signal and text alignment transfers to standard sleep staging and event related recognition settings.</li>
+            <li><b>Cross-modal retrieval:</b> supports both text to signal and signal to text retrieval, enabling natural language search over PSG segments and interpretation of retrieved physiology with matched captions.</li>
+            <li><b>Few-shot learning:</b> achieves high data efficiency in low label regimes, where simple linear probes on top of pretrained representations perform competitively with state-of-the-art SSL baselines.</li>
+            <li><b>Generalization to unseen concepts:</b> remains robust when evaluating on heldout concepts and datasets, indicating that the model captures reusable physiological semantics rather than memorizing a closed label set.</li>
           </ul>
         </div>
 
         <h3 class="title is-4">Qualitative Insights</h3>
         <div class="content has-text-justified">
           <p>
-            We additionally visualize generation quality and representation structure using two qualitative analyses from the paper.
+            In this section, we include two qualitative views that make it easier to understand what the model learns and
+            where its strengths come from. We also demonstrate other intriguing capabilities of SleepLM including precise targeted generation,
+            localization sensitivity to event segmentation, scaling behavior, full night index aggregation, etc. For more details, please refer to the paper.
+          </p>
+          <p>
+            <em>Caption generation quality</em>: SleepLM produces clinically consistent descriptions that reflect both high level sleep state
+            and finegrained localized events, while a strong general-purpose LLM baseline may introduce incorrect
+            associations or miss event localization tied to the underlying signal evidence.
+          </p>
+          <p>
+            <em>Embedding-space continuity</em>: For a fixed PSG query, retrieved captions
+            form a smooth semantic gradient. The most similar results describe physiologically matching states, and progressively less similar
+            results shift toward increasingly different states. This supports the view that embedding distance correlates with physiological similarity,
+            enabling meaningful comparison by semantic proximity.
           </p>
         </div>
 
-        <div class="columns is-variable is-4">
-          <div class="column">
-            <figure class="image">
-              <img src="./static/images/generation_quality.png" alt="Caption generation quality">
-            </figure>
-            <p class="is-size-7 has-text-centered">
-              Caption generation quality
-            </p>
-          </div>
-          <div class="column">
-            <figure class="image">
-              <img src="./static/images/retrieval_quality.png" alt="Embedding space continuity">
-            </figure>
-            <p class="is-size-7 has-text-centered">
-              Embedding space continuity
-            </p>
-          </div>
+        <div style="text-align: center; margin-top: 60px; margin-bottom: 60px;">
+          <img src="./static/images/generation_quality.png" alt="Caption generation quality" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+          <p class="is-size-7 has-text-centered">
+            Caption generation quality
+          </p>
         </div>
-
-        <div class="content has-text-justified">
-          <p class="is-size-7">
-            Note: The quantitative benchmarks above are summarized in text because the corresponding plots are not included on this page yet.
-            If you later export the benchmark figures, they can be added under “Benchmark Highlights” in the same style as the qualitative figures.
+        <div style="text-align: center; margin-top: 60px; margin-bottom: 60px;">
+          <img src="./static/images/retrieval_qualitative.png" alt="Embedding space continuity" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+          <p class="is-size-7 has-text-centered">
+            Embedding space continuity
           </p>
         </div>
 
