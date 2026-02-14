@@ -105,6 +105,16 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
               <span class="link-block">
                 <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
@@ -112,6 +122,16 @@
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -147,10 +167,10 @@
     <div class="hero-body">
       <!-- Placeholder for Teaser Video/Image -->
       <div style="text-align: center;">
-         <img src="./static/images/figure1.png" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
+         <img src="./static/images/interpolate_start.jpg" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
       </div>
       <h2 class="subtitle has-text-centered">
-        SleepLM is a family of foundation models that bridge natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
+        <span class="dnerf">SleepLM</span> is a family of foundation models that bridge natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
       </h2>
     </div>
   </div>
@@ -173,7 +193,7 @@
           <p>
             SleepLM bridges natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology. To
             support this alignment, we introduce a multilevel sleep caption generation pipeline that enables the
-            curation of the <strong>first</strong> large-scale sleep-text dataset, comprising over 100K hours of data from more
+            curation of the first large-scale sleep-text dataset, comprising over 100K hours of data from more
             than 10,000 individuals. Furthermore, we present a unified pretraining objective that combines
             contrastive alignment, caption generation, and signal reconstruction to better capture physiological
             fidelity and cross-modal interactions.
@@ -206,8 +226,8 @@
             Making sense of sleep requires a mapping from physiology to language.
           </p>
           <p>
-            Current computational methods are predominantly discriminative and confined to closed label spaces (e.g., sleep stages or events).
-            They lack the capacity for open-ended description. SleepLM aims to bridge this gap by learning a mapping between PSG and language at scale, enabling interactive and open-ended sleep analysis.
+            Current computational methods are predominantly discriminative and confined to <strong>closed label spaces</strong> (e.g., sleep stages or events).
+            They lack the capacity for <strong>open-ended description or reasoning</strong>. SleepLM addresses this by learning to translate high-frequency sleep physiology into actionable language descriptions.
           </p>
         </div>
       </div>
@@ -241,9 +261,10 @@
             The model is trained with a composite objective function:
             <code>L_total = λ_con * L_con + λ_rec * L_rec + λ_cap * L_cap</code>, combining contrastive alignment, signal reconstruction, and caption generation.
           </p>
-          <div style="text-align: center; margin-top: 60px;">
-             <img src="./static/images/model_figure.png" alt="SleepLM Architecture" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
-             <p class="is-size-6">The ReCoCa Architecture</p>
+          <div style="text-align: center; margin-top: 20px;">
+             <!-- Placeholder for Method Figure -->
+             <img src="./static/images/interpolate_end.jpg" alt="SleepLM Architecture" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
+             <p class="is-size-6">Figure 1: The ReCoCa Architecture (Placeholder for Figure 3 from paper)</p>
           </div>
         </div>
       </div>
@@ -297,18 +318,18 @@
         <div class="columns is-variable is-4">
           <div class="column">
             <figure class="image">
-              <img src="./static/images/generation_quality.png" alt="Caption generation quality">
+              <img src="./static/images/figure5_generation_quality.png" alt="Figure 5: caption generation quality">
             </figure>
             <p class="is-size-7 has-text-centered">
-              Caption generation quality
+              Figure 5: Caption generation quality (replace with the exported figure from the paper).
             </p>
           </div>
           <div class="column">
             <figure class="image">
-              <img src="./static/images/retrieval_quality.png" alt="Embedding space continuity">
+              <img src="./static/images/figure7_embedding_continuity.png" alt="Figure 7: embedding space continuity">
             </figure>
             <p class="is-size-7 has-text-centered">
-              Embedding space continuity
+              Figure 7: Embedding space continuity (replace with the exported figure from the paper).
             </p>
           </div>
         </div>
