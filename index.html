@@ -105,16 +105,6 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
               <span class="link-block">
                 <a href="#"
                    class="external-link button is-normal is-rounded is-dark">
@@ -122,16 +112,6 @@
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -167,10 +147,10 @@
     <div class="hero-body">
       <!-- Placeholder for Teaser Video/Image -->
       <div style="text-align: center;">
-         <img src="./static/images/interpolate_start.jpg" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
+         <img src="./static/images/figure1.png" alt="SleepLM Teaser" style="width: 100%; max-height: 400px; object-fit: cover;">
       </div>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">SleepLM</span> is, to our knowledge, the first sleep-language foundation model family for <strong>targeted PSG→text generation</strong> and <strong>sleep↔text retrieval</strong>, trained on a large paired sleep–text corpus from NSRR cohorts.
+        <span class="dnerf">SleepLM</span> is a family of foundation models that bridge natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology.
       </h2>
     </div>
   </div>
@@ -183,100 +163,226 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-<div class="content has-text-justified">
+        <div class="content has-text-justified">
           <p>
-            We present <strong>SleepLM</strong>, a family of <em>sleep-language foundation models</em> that align multimodal polysomnography (PSG) with natural language to enable
-            open-vocabulary sleep understanding, retrieval, and natural-language reporting.
-            In contrast to prior learning-based sleep systems that operate in <strong>closed label spaces</strong> (e.g., predefined stages or events),
-            SleepLM supports <strong>free-form, clinically meaningful descriptions</strong> grounded in physiology.
+            We present <strong>SleepLM</strong>, a family of sleep-language foundation models that enable human sleep alignment,
+            interpretation, and interaction with natural language. Despite the critical role of sleep, learning-based
+            sleep analysis systems operate in closed label spaces (e.g., predefined stages or events) and fail to
+            describe, query, or generalize to novel sleep phenomena.
           </p>
           <p>
-            To support scalable sleep–text alignment, we curate a multilevel captioning pipeline that produces <strong>channel</strong>-specific,
-            <strong>local</strong> temporal, and <strong>global</strong> epoch-level captions, yielding a large paired sleep–text corpus from five NSRR cohorts
-            (100K+ hours of PSG; 10K+ individuals).
-            We further introduce <strong>ReCoCa</strong>, a unified pretraining objective that combines <strong>contrastive alignment</strong>,
-            <strong>caption generation</strong>, and <strong>signal reconstruction</strong> to preserve physiological fidelity while learning strong cross-modal semantics.
+            SleepLM bridges natural language and multimodal polysomnography, enabling language-grounded representations of sleep physiology. To
+            support this alignment, we introduce a multilevel sleep caption generation pipeline that enables the
+            curation of the first large-scale sleep-text dataset, comprising over 100K hours of data from more
+            than 10,000 individuals. Furthermore, we present a unified pretraining objective that combines
+            contrastive alignment, caption generation, and signal reconstruction to better capture physiological
+            fidelity and cross-modal interactions.
           </p>
           <p>
-            SleepLM enables <strong>controllable / targeted generation</strong> (brain, cardiac, respiration, somatic) and supports
-            <strong>sleep↔text retrieval</strong>, <strong>zero-/few-shot generalization</strong>, and <strong>robust transfer to unseen concepts</strong>.
-          </p>
-          <p class="has-text-grey is-size-7">
-            SleepLM is a research prototype and is <strong>not</strong> clinically validated for diagnosis or medical decision-making.
-          </p>
-        </div>
-<h2 class="title is-3">Motivation</h2>
-<div class="content has-text-justified">
-          <p>
-            Human sleep is expressed through dense, continuous physiology, yet most computational sleep pipelines reduce it to a small set of labels.
-            This makes it difficult to <strong>describe</strong> nuanced phenomena, <strong>query</strong> recordings with natural language, or <strong>generalize</strong> beyond predefined taxonomies.
-          </p>
-          <p>
-            SleepLM aims to bridge this gap by learning a mapping between PSG and language at scale, enabling interactive and open-ended sleep analysis:
-            “find epochs with irregular breathing and arousals”, “summarize respiration over the night”, or “describe EEG patterns consistent with N2”.
+            Extensive experiments on real-world sleep understanding tasks
+            verify that SleepLM outperforms state-of-the-art in zero-shot and few-shot learning, cross-modal
+            retrieval, and sleep captioning. Importantly, SleepLM also exhibits intriguing capabilities including
+            language-guided event localization, targeted insight generation, and zero-shot generalization to
+            unseen tasks.
           </p>
         </div>
-<h2 class="title is-3">Model Architecture: ReCoCa</h2>
-<div class="content has-text-justified">
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Motivation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
           <p>
-            SleepLM is built on the <strong>Reconstructive Contrastive Captioner (ReCoCa)</strong> framework to jointly learn (i) a shared embedding space for sleep↔text alignment and (ii) a conditional captioner for physiologically grounded generation.
+            Humans move between two distinct states: the waking life, structured by perception and language; and sleep, expressed through dense and continuous physiology.
+            Making sense of sleep requires a mapping from physiology to language.
+          </p>
+          <p>
+            Current computational methods are predominantly discriminative and confined to closed label spaces (e.g., sleep stages or events).
+            They lack the capacity for open-ended description. SleepLM aims to bridge this gap by learning a mapping between PSG and language at scale, enabling interactive and open-ended sleep analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Motivation. -->
+
+    <!-- Model Architecture. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model Architecture: ReCoCa</h2>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM is built on the <strong>Reconstructive Contrastive Captioner (ReCoCa)</strong> framework, designed to learn joint representations of sleep PSG and text.
+            The architecture consists of three key components:
           </p>
           <ul>
             <li>
-              <strong>Channel-aware sleep encoder:</strong>
-              encodes multi-sensor PSG with explicit channel structure to capture modality-specific morphology and cross-channel interactions.
+              <strong>Channel-Specific Sleep Encoder:</strong>
+              Captures the unique morphology of different sensor channels (EEG, EOG, etc.) using channel-independent patch embedding followed by interleaved temporal-attention and channel-attention blocks.
             </li>
             <li>
-              <strong>Text decoder for targeted generation:</strong>
-              generates natural-language descriptions conditioned on the encoded PSG and optional <em>domain prompts</em> (brain / cardiac / respiration / somatic) for controllable reporting.
+              <strong>Signal Reconstruction Decoder:</strong>
+              A lightweight decoder that predicts original signal patches from encoder latents. This acts as a regularizer, ensuring the model retains physiological fidelity that might be lost if only training on text alignment.
             </li>
             <li>
-              <strong>Unified ReCoCa objective:</strong>
-              combines <strong>contrastive alignment</strong> (for retrieval), <strong>captioning</strong> (for generation), and <strong>reconstruction</strong> (for physiological fidelity).
+              <strong>Modality-Conditioned Text Decoder:</strong>
+              Generates descriptive captions. It uses a learnable token <code>[m]</code> to condition generation on specific physiological systems (Brain, Respiratory, Cardiac, Somatic), enabling controllable output.
             </li>
           </ul>
-          <p class="is-size-7 has-text-grey">
-            See the paper for architectural details and training protocol.
-          </p>
-        </div>
-<h2 class="title is-3">Capabilities</h2>
-<div class="content has-text-justified">
           <p>
-            SleepLM supports a set of language-first capabilities for sleep analysis:
+            The model is trained with a composite objective function:
+            <code>L_total = λ_con * L_con + λ_rec * L_rec + λ_cap * L_cap</code>, combining contrastive alignment, signal reconstruction, and caption generation.
+          </p>
+          <div style="text-align: center; margin-top: 20px;">
+             <!-- Placeholder for Method Figure -->
+             <img src="./static/images/model_figure.png" alt="SleepLM Architecture" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
+             <p class="is-size-6">Figure 1: The ReCoCa Architecture (Placeholder for Figure 3 from paper)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Model Architecture. -->
+
+    <!-- Capabilities. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Capabilities</h2>
+        <div class="content has-text-justified">
+          <p>
+            SleepLM demonstrates versatile capabilities beyond standard classification:
           </p>
           <ul>
-            <li><strong>Targeted (controllable) captioning:</strong> generate domain-specific descriptions for <em>brain</em>, <em>cardiac</em>, <em>respiration</em>, or <em>somatic</em> physiology, as well as holistic summaries.</li>
-            <li><strong>Cross-modal retrieval:</strong> retrieve relevant sleep segments from text queries (text→sleep) and retrieve descriptive text from sleep segments (sleep→text).</li>
-            <li><strong>Open-vocabulary generalization:</strong> transfer to unseen concepts and tasks beyond fixed label spaces, including zero-shot and few-shot settings.</li>
-            <li><strong>Physiology-aware representations:</strong> embeddings that remain grounded in signal structure via reconstructive pretraining.</li>
+            <li><strong>Zero-Shot Recognition:</strong> Outperforms proprietary LLMs (like Gemini 2.5 Pro, DeepSeek-R1) and fine-tuned VLMs on sleep staging and event localization without any task-specific training.</li>
+            <li><strong>Cross-Modal Retrieval:</strong> Enables precise searching of sleep segments using natural language queries (e.g., "rapid eye movement with irregular breathing") and vice-versa.</li>
+            <li><strong>Unseen Concept Generalization:</strong> Can identify clinical events not seen during training (e.g., "Mixed Apnea") by leveraging semantic relationships in the learned embedding space.</li>
+            <li><strong>Few-Shot Learning:</strong> Achieves high accuracy (0.90 AUC) with as few as 50 samples per class, demonstrating superior data efficiency compared to self-supervised baselines.</li>
           </ul>
         </div>
-<h2 class="title is-3">Results</h2>
-<div class="content has-text-justified">
+      </div>
+    </div>
+    <!--/ Capabilities. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <div class="content has-text-justified">
           <p>
-            We evaluate SleepLM across a broad benchmark spanning <strong>zero-shot recognition</strong>, <strong>cross-modal retrieval</strong>, and <strong>data-efficient adaptation</strong>.
-            The full set of quantitative results, ablations, and qualitative examples are provided in the paper.
+            Below we summarize representative evaluations from the paper. The website intentionally stays figure-first:
+            each panel corresponds to a key capability (zero-shot understanding, cross-modal retrieval, and transfer/data efficiency).
           </p>
-          <div class="notification is-light">
-            <strong>Tip:</strong> For the cleanest website presentation, we recommend embedding the main paper figures here (method diagram, key results plot, and qualitative examples).
-            The placeholders below are meant to be replaced by your exported figures.
+        </div>
+
+        <!-- Quantitative highlights -->
+        <div class="columns is-variable is-4">
+          <div class="column">
+            <figure class="image">
+              <img src="./static/images/results_zeroshot.png" alt="Zero-shot sleep understanding results figure">
+            </figure>
+            <p class="is-size-7 has-text-centered">
+              Zero-shot sleep understanding across staging, event-related tasks, and physiological inference.
+            </p>
+          </div>
+          <div class="column">
+            <figure class="image">
+              <img src="./static/images/results_retrieval.png" alt="Cross-modal retrieval results figure">
+            </figure>
+            <p class="is-size-7 has-text-centered">
+              Cross-modal retrieval (text→signal and signal→text) at multiple scales.
+            </p>
           </div>
         </div>
 
-        <div class="columns is-multiline">
-          <div class="column is-6">
-            <h3 class="title is-5">Key Results</h3>
-            <figure class="image">
-              <img src="./static/images/results.png" alt="SleepLM key quantitative results (replace with paper figure).">
-            </figure>
-            <p class="has-text-grey is-size-7">Replace <code>./static/images/results.png</code> with a main results figure from the paper.</p>
-          </div>
+        <div class="content has-text-justified">
+          <p>
+            In addition, SleepLM shows strong transfer with limited labels, indicating data-efficient representations.
+          </p>
+        </div>
 
-          <div class="column is-6">
-            <h3 class="title is-5">Qualitative Examples</h3>
+        <div class="columns is-variable is-4">
+          <div class="column">
             <figure class="image">
-              <img src="./static/images/qual_examples.png" alt="Targeted captioning examples for brain/cardiac/respiration/somatic (replace with paper figure).">
+              <img src="./static/images/results_fewshot.png" alt="Few-shot transfer learning curves figure">
             </figure>
-            <p class="has-text-grey is-size-7">Replace <code>./static/images/qual_examples.png</code> with a collage of 3–6 curated examples.</p>
+            <p class="is-size-7 has-text-centered">
+              Few-shot transfer with simple probes on frozen features.
+            </p>
+          </div>
+          <div class="column">
+            <figure class="image">
+              <img src="./static/images/results_unseen.png" alt="Unseen concept generalization visualization figure">
+            </figure>
+            <p class="is-size-7 has-text-centered">
+              Generalization to unseen concepts / embedding visualization.
+            </p>
           </div>
         </div>
+
+        <div class="content has-text-justified">
+          <p class="is-size-7">
+            Figure placeholders: replace the <code>.png</code> files under <code>./static/images/</code> with exported figures from the paper
+            (recommended: 1600–2400px wide PNG, or SVG for diagrams).
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{xu2026sleeplm,
+  title={SleepLM: Natural-Language Intelligence for Human Sleep},
+  author={Xu, Zongzhe and Shuai, Zitao and Mozaffari, Eideen and Aysola, Ravi Shankar and Kumar, Rajesh and Yang, Yuzhe},
+  journal={arXiv preprint},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="#">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/YourRepo" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Template borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
